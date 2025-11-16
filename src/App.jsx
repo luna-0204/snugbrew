@@ -102,7 +102,7 @@ export default function App() {
     return false;
   }
 
-  // Helper to open single-flavour pages, call setView('flavor-lavender') etc.
+  // Helper to open single-flavour pages
   const openFlavor = (flav) => setView(flav);
 
   return (
@@ -147,10 +147,6 @@ export default function App() {
         {view === "flavor-cocoa-dream" && <FlavorCocoa openFlavor={openFlavor} />}
         {view === "flavor-jasmine-whisper" && <FlavorJasmine openFlavor={openFlavor} />}
       </main>
-    </div>
-  );
-}
-        </main>
     </div>
   );
 }
