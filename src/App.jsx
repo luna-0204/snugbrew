@@ -23,21 +23,165 @@ const PHONE_NUMBER = "919876543210";
 const ADMIN_PASSWORD = "adminpass";
 
 const DEFAULT_PRODUCTS = [
+  // LAVENDER
   {
-    id: "p_chamomile",
-    title: "Chamomile Cozy (Tin - 10 servings)",
-    price: 349,
-    stock: 120,
-    desc: "A soothing floral blend designed for restful nights.",
-    img: "/assets/images/chamomile-calm-kit.jpg"
+    id: "lavender_starter",
+    title: "Lavender • Starter Calm Kit",
+    price: 499,
+    desc: "Tin • 2 sachets • eye mask • guide",
+    img: "/assets/images/lavender-calm-kit.jpg",
+    flavor: "lavender",
+    type: "starter"
   },
   {
-    id: "p_lavender",
-    title: "Lavender Vanilla Honey (Tin - 10 servings)",
-    price: 399,
-    stock: 100,
-    desc: "Creamy, soft, naturally sweet — your bedtime companion.",
-    img: "/assets/images/vanilla-honey-calm-kit.jpg"
+    id: "lavender_premium",
+    title: "Lavender • Premium Calm Kit (Launch)",
+    price: 899,
+    futurePrice: 1299,
+    desc: "Large tin • aromatherapy oil • sleep spray",
+    img: "/assets/images/lavender-premium-kit.jpg",
+    flavor: "lavender",
+    type: "premium"
+  },
+  {
+    id: "lavender_tin",
+    title: "Lavender • Ritual Tin",
+    price: 199,
+    desc: "Compact ritual tin — refillable & reusable",
+    img: "/assets/images/lavender-tin.jpg",
+    flavor: "lavender",
+    type: "tin"
+  },
+
+  // VANILA HONEY (preserve your spelling)
+  {
+    id: "vanila_starter",
+    title: "Vanila Honey • Starter Calm Kit",
+    price: 499,
+    desc: "Tin • 2 sachets • eye mask • guide",
+    img: "/assets/images/vanila-honey-calm-kit.jpg",
+    flavor: "vanila-honey",
+    type: "starter"
+  },
+  {
+    id: "vanila_premium",
+    title: "Vanila Honey • Premium Calm Kit (Launch)",
+    price: 899,
+    futurePrice: 1299,
+    desc: "Large tin • aromatherapy oil • sleep spray",
+    img: "/assets/images/vanila-honey-premium-kit.jpg",
+    flavor: "vanila-honey",
+    type: "premium"
+  },
+  {
+    id: "vanila_tin",
+    title: "Vanila Honey • Ritual Tin",
+    price: 199,
+    desc: "Compact ritual tin — refillable & reusable",
+    img: "/assets/images/vanila-honey-tin.jpg",
+    flavor: "vanila-honey",
+    type: "tin"
+  },
+
+  // CHAMOMILE
+  {
+    id: "chamomile_starter",
+    title: "Chamomile Cozy • Starter Calm Kit",
+    price: 499,
+    desc: "Tin • 2 sachets • eye mask • guide",
+    img: "/assets/images/chamomile-calm-kit.jpg",
+    flavor: "chamomile",
+    type: "starter"
+  },
+  {
+    id: "chamomile_premium",
+    title: "Chamomile Cozy • Premium Calm Kit (Launch)",
+    price: 899,
+    futurePrice: 1299,
+    desc: "Large tin • aromatherapy oil • sleep spray",
+    img: "/assets/images/chamomile-premium-kit.jpg",
+    flavor: "chamomile",
+    type: "premium"
+  },
+  {
+    id: "chamomile_tin",
+    title: "Chamomile Cozy • Ritual Tin",
+    price: 199,
+    desc: "Compact ritual tin — refillable & reusable",
+    img: "/assets/images/chamomile-tin.jpg",
+    flavor: "chamomile",
+    type: "tin"
+  },
+
+  // COCOA DREAM
+  {
+    id: "cocoa_starter",
+    title: "Cocoa Dream • Starter Calm Kit",
+    price: 499,
+    desc: "Tin • 2 sachets • eye mask • guide",
+    img: "/assets/images/cocoa-dream-calm-kit.jpg",
+    flavor: "cocoa-dream",
+    type: "starter"
+  },
+  {
+    id: "cocoa_premium",
+    title: "Cocoa Dream • Premium Calm Kit (Launch)",
+    price: 899,
+    futurePrice: 1299,
+    desc: "Large tin • aromatherapy oil • sleep spray",
+    img: "/assets/images/cocoa-dream-premium-kit.jpg",
+    flavor: "cocoa-dream",
+    type: "premium"
+  },
+  {
+    id: "cocoa_tin",
+    title: "Cocoa Dream • Ritual Tin",
+    price: 199,
+    desc: "Compact ritual tin — refillable & reusable",
+    img: "/assets/images/cocoa-dream-tin.jpg",
+    flavor: "cocoa-dream",
+    type: "tin"
+  },
+
+  // JASMINE WISPER (note: 'wisper' preserved)
+  {
+    id: "jasmine_starter",
+    title: "Jasmine Wisper • Starter Calm Kit",
+    price: 499,
+    desc: "Tin • 2 sachets • eye mask • guide",
+    img: "/assets/images/jasmine-wisper-calm-kit.jpg",
+    flavor: "jasmine-wisper",
+    type: "starter"
+  },
+  {
+    id: "jasmine_premium",
+    title: "Jasmine Wisper • Premium Calm Kit (Launch)",
+    price: 899,
+    futurePrice: 1299,
+    desc: "Large tin • aromatherapy oil • sleep spray",
+    img: "/assets/images/jasmine-wisper-premium-kit.jpg",
+    flavor: "jasmine-wisper",
+    type: "premium"
+  },
+  {
+    id: "jasmine_tin",
+    title: "Jasmine Wisper • Ritual Tin",
+    price: 199,
+    desc: "Compact ritual tin — refillable & reusable",
+    img: "/assets/images/jasmine-wisper-tin.jpg",
+    flavor: "jasmine-wisper",
+    type: "tin"
+  },
+
+  // subscription as a "product" (optional listing)
+  {
+    id: "sub_monthly_999",
+    title: "Subscription • Monthly Calm",
+    price: 999,
+    desc: "Monthly subscription — new seasonal sachets + perks (recurring).",
+    img: "/assets/images/all-flavour.jpg",
+    flavor: "subscription",
+    type: "subscription"
   }
 ];
 
