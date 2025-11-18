@@ -1,12 +1,18 @@
+// src/main.jsx
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 
-import "./index.css";
-import "./styles.css";
+import "./index.css";   // Tailwind entry (must exist)
+import "./styles.css";  // optional aesthetic styles (must exist or remove this import)
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+const rootEl = document.getElementById("root");
+if (!rootEl) {
+  throw new Error("Root element not found. Ensure index.html has <div id=\"root\"></div>.");
+}
+
+createRoot(rootEl).render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
