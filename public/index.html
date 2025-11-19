@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header with Cart -->
+    <!-- IMPROVED HEADER -->
     <header class="header">
         <nav class="nav">
             <div class="logo">SnugBrew ☕</div>
@@ -23,29 +23,56 @@
         </nav>
     </header>
 
-    <!-- Spinning Carousel -->
+    <!-- CAROUSEL WITH ALL 5 FLAVORS + TIN PICS -->
     <section class="hero">
         <div class="carousel-container">
             <div class="carousel" id="mainCarousel">
+                <!-- ALL FLAVORS COLLECTION -->
                 <div class="carousel-item active">
-                    <img src="/assets/images/all-flavour.jpg" alt="All Flavors">
+                    <img src="/assets/images/all-flavour.jpg" alt="All Flavors Collection">
                     <div class="carousel-text">
-                        <h1>Rituals for Calm</h1>
-                        <p>Discover our non-caffeinated wellness kits</p>
+                        <h1>All 5 Flavors</h1>
+                        <p>Discover our complete ritual kit collection</p>
                     </div>
                 </div>
+                <!-- CHAMOMILE -->
                 <div class="carousel-item">
-                    <img src="/assets/images/chamomile-calm-kit.jpg" alt="Chamomile Cozy">
+                    <img src="/assets/images/chamomile-tin.jpg" alt="Chamomile Cozy Tin">
                     <div class="carousel-text">
                         <h1>Chamomile Cozy</h1>
                         <p>Soothing floral blend for peaceful evenings</p>
                     </div>
                 </div>
+                <!-- LAVENDER -->
                 <div class="carousel-item">
-                    <img src="/assets/images/lavender-calm-kit.jpg" alt="Lavender Calm">
+                    <img src="/assets/images/lavender-tin.jpg" alt="Lavender Calm Tin">
                     <div class="carousel-text">
                         <h1>Lavender Calm</h1>
-                        <p>Relaxing lavender infusion</p>
+                        <p>Relaxing lavender infusion with vanilla notes</p>
+                    </div>
+                </div>
+                <!-- COCOA -->
+                <div class="carousel-item">
+                    <img src="/assets/images/cocoa-dream-tin.jpg" alt="Cocoa Dream Tin">
+                    <div class="carousel-text">
+                        <h1>Cocoa Dream</h1>
+                        <p>Rich cocoa with calming vanilla undertones</p>
+                    </div>
+                </div>
+                <!-- JASMINE -->
+                <div class="carousel-item">
+                    <img src="/assets/images/jasmine-wisper-tin.jpg" alt="Jasmine Whisper Tin">
+                    <div class="carousel-text">
+                        <h1>Jasmine Whisper</h1>
+                        <p>Delicate jasmine with honey notes</p>
+                    </div>
+                </div>
+                <!-- VANILLA HONEY -->
+                <div class="carousel-item">
+                    <img src="/assets/images/vanila-honey-tin.jpg" alt="Vanilla Honey Tin">
+                    <div class="carousel-text">
+                        <h1>Vanilla Honey</h1>
+                        <p>Warm vanilla with sweet honey accents</p>
                     </div>
                 </div>
             </div>
@@ -54,28 +81,41 @@
         </div>
     </section>
 
-    <!-- Quick Products Preview -->
+    <!-- PRODUCTS PREVIEW -->
     <section class="featured-products">
-        <h2>Our Ritual Kits</h2>
+        <h2>All 5 Ritual Flavors</h2>
         <div class="products-preview">
+            <!-- ALL 5 FLAVORS -->
             <div class="preview-card" onclick="window.location='/product/chamomile'">
-                <img src="/assets/images/chamomile-calm-kit.jpg" alt="Chamomile">
+                <img src="/assets/images/chamomile-tin.jpg" alt="Chamomile Cozy">
                 <h3>Chamomile Cozy</h3>
                 <p>From ₹199</p>
+                <button class="cta-button">View Options</button>
             </div>
             <div class="preview-card" onclick="window.location='/product/lavender'">
-                <img src="/assets/images/lavender-calm-kit.jpg" alt="Lavender">
+                <img src="/assets/images/lavender-tin.jpg" alt="Lavender Calm">
                 <h3>Lavender Calm</h3>
                 <p>From ₹199</p>
+                <button class="cta-button">View Options</button>
             </div>
             <div class="preview-card" onclick="window.location='/product/cocoa'">
-                <img src="/assets/images/cocoa-dream-calm-kit.jpg" alt="Cocoa">
+                <img src="/assets/images/cocoa-dream-tin.jpg" alt="Cocoa Dream">
                 <h3>Cocoa Dream</h3>
                 <p>From ₹199</p>
+                <button class="cta-button">View Options</button>
             </div>
-        </div>
-        <div style="text-align: center; margin-top: 2rem;">
-            <button class="cta-button" onclick="window.location='/products'">View All Products</button>
+            <div class="preview-card" onclick="window.location='/product/jasmine'">
+                <img src="/assets/images/jasmine-wisper-tin.jpg" alt="Jasmine Whisper">
+                <h3>Jasmine Whisper</h3>
+                <p>From ₹199</p>
+                <button class="cta-button">View Options</button>
+            </div>
+            <div class="preview-card" onclick="window.location='/product/vanilla'">
+                <img src="/assets/images/vanila-honey-tin.jpg" alt="Vanilla Honey">
+                <h3>Vanilla Honey</h3>
+                <p>From ₹199</p>
+                <button class="cta-button">View Options</button>
+            </div>
         </div>
     </section>
 
