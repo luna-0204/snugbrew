@@ -1,13 +1,13 @@
 {
   "name": "snugbrew",
-  "version": "1.0.0", 
-  "description": "A cozy coffee website",
+  "version": "1.0.0",
+  "description": "SnugBrew - Rituals for Calm wellness brand",
   "main": "index.js",
   "scripts": {
     "dev": "node index.js",
     "start": "node index.js"
   },
-  "keywords": ["coffee", "website", "express"],
+  "keywords": ["wellness", "rituals", "non-caffeinated", "self-care"],
   "author": "luna",
   "license": "MIT",
   "dependencies": {
