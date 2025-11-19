@@ -1,15 +1,15 @@
 {
   "name": "snugbrew",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.0", 
+  "description": "A cozy coffee website",
   "main": "index.js",
   "scripts": {
     "dev": "node index.js",
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["coffee", "website", "express"],
+  "author": "luna",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.18.2"
   }
