@@ -471,3 +471,91 @@ function checkAdminAccess() {
         return false;
     }
 }
+
+// Detect which page we're on and show appropriate content
+function detectPage() {
+    const path = window.location.pathname;
+    
+    if (path === '/about') {
+        showAboutPage();
+    } else if (path === '/blog') {
+        showBlogPage();
+    } else if (path === '/contact') {
+        showContactPage();
+    } else if (path === '/products') {
+        showProductsPage();
+    } else if (path === '/cart') {
+        showCartPage();
+    }
+}
+
+function showAboutPage() {
+    const main = document.querySelector('main');
+    if (!main) return;
+    
+    main.innerHTML = `
+        <section style="max-width: 800px; margin: 100px auto; padding: 2rem;">
+            <h1>About SnugBrew</h1>
+            <p>Welcome to SnugBrew - your sanctuary for calm and relaxation. We create non-caffeinated ritual kits to help you unwind and find peace in your daily routine.</p>
+            <p>Each kit is carefully crafted with soothing blends, calming scents, and mindful elements to create your perfect evening ritual.</p>
+            <a href="/" class="cta-button">Back to Home</a>
+        </section>
+    `;
+}
+
+function showBlogPage() {
+    const main = document.querySelector('main');
+    if (!main) return;
+    
+    main.innerHTML = `
+        <section style="max-width: 800px; margin: 100px auto; padding: 2rem;">
+            <h1>Blog</h1>
+            <p>Coming soon - articles about mindfulness, self-care, and creating perfect evening rituals.</p>
+            <a href="/" class="cta-button">Back to Home</a>
+        </section>
+    `;
+}
+
+function showContactPage() {
+    const main = document.querySelector('main');
+    if (!main) return;
+    
+    main.innerHTML = `
+        <section style="max-width: 800px; margin: 100px auto; padding: 2rem;">
+            <h1>Contact Us</h1>
+            <p>Email: hello@snugbrew.com</p>
+            <p>Phone: +91 XXXXX XXXXX</p>
+            <p>We'd love to hear from you!</p>
+            <a href="/" class="cta-button">Back to Home</a>
+        </section>
+    `;
+}
+
+function showProductsPage() {
+    // This will show the products grid (same as homepage products section)
+    const main = document.querySelector('main');
+    if (!main) return;
+    
+    main.innerHTML = `
+        <section class="featured-products">
+            <h2>All Our Ritual Kits</h2>
+            <div class="products-preview">
+                <!-- Products will be loaded by loadProductsPreview() -->
+            </div>
+        </section>
+    `;
+    loadProductsPreview();
+}
+
+function showCartPage() {
+    const main = document.querySelector('main');
+    if (!main) return;
+    
+    main.innerHTML = `
+        <section style="max-width: 800px; margin: 100px auto; padding: 2rem;">
+            <h1>Your Cart</h1>
+            <p>Cart functionality coming soon!</p>
+            <a href="/" class="cta-button">Continue Shopping</a>
+        </section>
+    `;
+}
