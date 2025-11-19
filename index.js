@@ -3,17 +3,41 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve static files from public folder
+// Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Serve assets folder
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-// All routes should serve index.html for SPA (Single Page Application)
-app.get('*', (req, res) => {
+// Serve main site
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// Serve admin page
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
+
+// API route for products
+app.get('/api/products', (req, res) => {
+    res.json([
+        {
+            id: 1,
+            name: "Chamomile Cozy",
+            type: "calm-kit",
+            price: 499,
+            image: "/assets/images/chamomile-calm-kit.jpg"
+        },
+        {
+            id: 2, 
+            name: "Cocoa Dream",
+            type: "premium-kit",
+            price: 899,
+            image: "/assets/images/cocoa-dream-premium-kit.jpg"
+        }
+        // Add all your products here
+    ]);
+});
+
 app.listen(PORT, () => {
-    console.log(`🚀 SnugBrew server running on port ${PORT}`);
+    console.log(`☕ SnugBrew running on port ${PORT}`);
 });
