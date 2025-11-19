@@ -3,58 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SnugBrew ☕</title>
+    <title>SnugBrew — Rituals for Calm</title>
+    <meta name="description" content="Non-caffeinated ritual kits with candles, calming drinks, skincare and plushies for restful evenings">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
             <div class="logo">SnugBrew ☕</div>
-            <ul>
+            <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#menu">Menu</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#premium">Premium</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Welcome to SnugBrew</h1>
-                <p>Where every cup tells a story</p>
-                <button class="cta-button">Order Now</button>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Rituals for Calm</h1>
+            <p>Small-batch kits to slow your evenings</p>
+            <button class="cta-button">Explore Kits</button>
+        </div>
+        <div class="hero-carousel">
+            <!-- Carousel will be populated by JavaScript -->
+        </div>
+    </section>
 
-        <!-- Carousel Section -->
-        <section class="carousel-section">
-            <h2>Our Special Coffees</h2>
-            <div class="carousel">
-                <div class="carousel-item active">
-                    <img src="/assets/coffee1.jpg" alt="Espresso">
-                    <h3>Rich Espresso</h3>
-                </div>
-                <div class="carousel-item">
-                    <img src="/assets/coffee2.jpg" alt="Latte">
-                    <h3>Creamy Latte</h3>
-                </div>
-                <div class="carousel-item">
-                    <img src="/assets/coffee3.jpg" alt="Cappuccino">
-                    <h3>Frothy Cappuccino</h3>
-                </div>
-            </div>
-            <div class="carousel-controls">
-                <button class="prev">←</button>
-                <button class="next">→</button>
-            </div>
-        </section>
-    </main>
+    <!-- Products Grid -->
+    <section id="products" class="products">
+        <h2>Our Ritual Kits</h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products loaded by JavaScript -->
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2024 SnugBrew. All rights reserved.</p>
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <h2>Simple Pricing</h2>
+        <div class="pricing-table">
+            <div class="pricing-card">
+                <h3>Calm Kit</h3>
+                <div class="price">₹499</div>
+                <ul>
+                    <li>Tin of drink</li>
+                    <li>Mini candle</li>
+                    <li>Skincare minis</li>
+                    <li>Affirmation card</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3>Premium Kit</h3>
+                <div class="price">₹899</div>
+                <ul>
+                    <li>All Calm Kit items</li>
+                    <li>Full-size candle</li>
+                    <li>Eye mask + Plushie</li>
+                    <li>Premium packaging</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 SnugBrew. Academic demonstration project.</p>
+        <p><a href="/admin" style="color: var(--muted); font-size: 0.8rem;">Admin Demo</a></p>
     </footer>
 
     <script src="script.js"></script>
