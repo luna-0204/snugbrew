@@ -103,28 +103,67 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartCount();
     loadProductDetail();
     setupMobileMenu();
-    loadProductsPreview(); // 🆕 ADDED THIS LINE!
+    loadProductsPreview();
+    detectPage(); // 🆕 ADDED THIS!
 });
 
-// PRODUCT DETAIL PAGE - FIXED VERSION
+// 🆕 LOAD PRODUCTS PREVIEW FUNCTION
+function loadProductsPreview() {
+    const previewContainer = document.querySelector('.products-preview');
+    if (!previewContainer) return;
+    
+    previewContainer.innerHTML = `
+        <div class="preview-card" onclick="window.location.href='/product/chamomile'">
+            <img src="/assets/images/chamomile-tin.jpg" alt="Chamomile Cozy">
+            <h3>Chamomile Cozy</h3>
+            <p>From ₹199</p>
+            <button class="cta-button">View Options</button>
+        </div>
+        <div class="preview-card" onclick="window.location.href='/product/lavender'">
+            <img src="/assets/images/lavender-tin.jpg" alt="Lavender Calm">
+            <h3>Lavender Calm</h3>
+            <p>From ₹199</p>
+            <button class="cta-button">View Options</button>
+        </div>
+        <div class="preview-card" onclick="window.location.href='/product/cocoa'">
+            <img src="/assets/images/cocoa-dream-tin.jpg" alt="Cocoa Dream">
+            <h3>Cocoa Dream</h3>
+            <p>From ₹199</p>
+            <button class="cta-button">View Options</button>
+        </div>
+        <div class="preview-card" onclick="window.location.href='/product/jasmine'">
+            <img src="/assets/images/jasmine-wisper-tin.jpg" alt="Jasmine Whisper">
+            <h3>Jasmine Whisper</h3>
+            <p>From ₹199</p>
+            <button class="cta-button">View Options</button>
+        </div>
+        <div class="preview-card" onclick="window.location.href='/product/vanilla'">
+            <img src="/assets/images/vanila-honey-tin.jpg" alt="Vanilla Honey">
+            <h3>Vanilla Honey</h3>
+            <p>From ₹199</p>
+            <button class="cta-button">View Options</button>
+        </div>
+    `;
+}
+
+// PRODUCT DETAIL PAGE - SINGLE VERSION (REMOVED DUPLICATE)
 function loadProductDetail() {
     const path = window.location.pathname;
-    console.log('Current path:', path); // Debug log
+    console.log('Current path:', path);
     
     if (!path.includes('/product/')) {
         console.log('Not a product page');
         return;
     }
     
-    // Extract product name from URL
     const productName = path.split('/product/')[1];
-    console.log('Product name from URL:', productName); // Debug log
+    console.log('Product name from URL:', productName);
     
     const product = products[productName];
     const container = document.getElementById('productDetail');
     
-    console.log('Product found:', product); // Debug log
-    console.log('Container found:', container); // Debug log
+    console.log('Product found:', product);
+    console.log('Container found:', container);
     
     if (!container) {
         console.log('No product detail container found');
@@ -142,7 +181,6 @@ function loadProductDetail() {
         return;
     }
     
-    // SUCCESS! Show the actual product
     container.innerHTML = `
         <div class="product-detail">
             <div class="product-gallery">
@@ -207,7 +245,6 @@ function initCarousel() {
     
     createCarouselDots();
     
-    // Auto-rotate every 5 seconds
     carouselInterval = setInterval(() => {
         moveCarousel(1);
     }, 5000);
@@ -242,12 +279,10 @@ function moveCarousel(direction) {
     
     carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
     
-    // Update dots
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentSlide);
     });
     
-    // Reset auto-rotate timer
     clearInterval(carouselInterval);
     carouselInterval = setInterval(() => moveCarousel(1), 5000);
 }
@@ -262,12 +297,10 @@ function goToSlide(slideIndex) {
     currentSlide = slideIndex;
     carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
     
-    // Update dots
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentSlide);
     });
     
-    // Reset auto-rotate timer
     clearInterval(carouselInterval);
     carouselInterval = setInterval(() => moveCarousel(1), 5000);
 }
@@ -304,13 +337,10 @@ function addToCart(productId, option, subscription = null) {
     cart.push(cartItem);
     localStorage.setItem('snugbrewCart', JSON.stringify(cart));
     updateCartCount();
-    
-    // Show success message
     showNotification('Added to cart! 🛒');
 }
 
 function showNotification(message) {
-    // Create notification element
     const notification = document.createElement('div');
     notification.style.cssText = `
         position: fixed;
@@ -330,12 +360,10 @@ function showNotification(message) {
     
     document.body.appendChild(notification);
     
-    // Animate in
     setTimeout(() => {
         notification.style.transform = 'translateX(0)';
     }, 100);
     
-    // Animate out and remove
     setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
         setTimeout(() => {
@@ -344,87 +372,8 @@ function showNotification(message) {
     }, 3000);
 }
 
-// PRODUCT DETAIL PAGE
-function loadProductDetail() {
-    const path = window.location.pathname;
-    if (!path.includes('/product/')) return;
-    
-    const productName = path.split('/').pop();
-    const product = products[productName];
-    const container = document.getElementById('productDetail');
-    
-    if (!container) return;
-    
-    if (!product) {
-        container.innerHTML = `
-            <div style="text-align: center; padding: 4rem 2rem;">
-                <h2>Product Not Found</h2>
-                <p>Sorry, we couldn't find the product you're looking for.</p>
-                <a href="/products" class="cta-button" style="display: inline-block; margin-top: 1rem;">Back to Products</a>
-            </div>
-        `;
-        return;
-    }
-    
-    container.innerHTML = `
-        <div class="product-detail">
-            <div class="product-gallery">
-                <div class="main-image">
-                    <img src="${product.images[0]}" alt="${product.name}" id="mainProductImage">
-                </div>
-                <div class="thumbnail-gallery">
-                    ${product.images.map((img, index) => `
-                        <img src="${img}" alt="${product.name} ${index + 1}" 
-                             onclick="changeMainImage('${img}')"
-                             class="thumbnail ${index === 0 ? 'active' : ''}">
-                    `).join('')}
-                </div>
-            </div>
-            
-            <div class="product-info">
-                <h1>${product.name}</h1>
-                <p class="product-description">${product.description}</p>
-                
-                <div class="product-options">
-                    ${product.options.map((option, index) => `
-                        <div class="option-card ${index === 0 ? 'selected' : ''}" 
-                             onclick="selectOption(this, ${product.id}, ${index})">
-                            <h4>${option.type}</h4>
-                            <div class="price">₹${option.price}</div>
-                            <ul>
-                                ${option.includes.map(item => `<li>${item}</li>`).join('')}
-                            </ul>
-                        </div>
-                    `).join('')}
-                </div>
-                
-                <button class="cta-button add-to-cart-btn" onclick="addToCart(${product.id}, product.options[0])">
-                    Add to Cart - ₹${product.options[0].price}
-                </button>
-                
-                <div class="subscription-options">
-                    <h3>📦 Monthly Subscription</h3>
-                    ${product.subscriptions.map(sub => `
-                        <div class="sub-option">
-                            <div>
-                                <h4>${sub.type} Subscription - ₹${sub.price}/month</h4>
-                                <p>${sub.description}</p>
-                            </div>
-                            <button class="cta-button" onclick="addToCart(${product.id}, {type: '${sub.type} Subscription', price: ${sub.price}}, ${JSON.stringify(sub).replace(/"/g, '&quot;')})">
-                                Subscribe
-                            </button>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-        </div>
-    `;
-}
-
 function changeMainImage(src) {
     document.getElementById('mainProductImage').src = src;
-    
-    // Update active thumbnail
     document.querySelectorAll('.thumbnail').forEach(thumb => {
         thumb.classList.remove('active');
     });
@@ -432,15 +381,12 @@ function changeMainImage(src) {
 }
 
 function selectOption(element, productId, optionIndex) {
-    // Remove selected class from all options
     document.querySelectorAll('.option-card').forEach(card => {
         card.classList.remove('selected');
     });
     
-    // Add selected class to clicked option
     element.classList.add('selected');
     
-    // Update add to cart button
     const product = Object.values(products).find(p => p.id === productId);
     const button = document.querySelector('.add-to-cart-btn');
     if (button) {
@@ -472,9 +418,10 @@ function checkAdminAccess() {
     }
 }
 
-// Detect which page we're on and show appropriate content
+// 🆕 FIXED PAGE DETECTION SYSTEM
 function detectPage() {
     const path = window.location.pathname;
+    console.log('Detecting page:', path);
     
     if (path === '/about') {
         showAboutPage();
@@ -490,50 +437,46 @@ function detectPage() {
 }
 
 function showAboutPage() {
-    const main = document.querySelector('main');
+    const main = document.getElementById('mainContent'); // ✅ FIXED
     if (!main) return;
     
     main.innerHTML = `
         <section style="max-width: 800px; margin: 100px auto; padding: 2rem;">
             <h1>About SnugBrew</h1>
-            <p>Welcome to SnugBrew - your sanctuary for calm and relaxation. We create non-caffeinated ritual kits to help you unwind and find peace in your daily routine.</p>
-            <p>Each kit is carefully crafted with soothing blends, calming scents, and mindful elements to create your perfect evening ritual.</p>
+            <p>Welcome to SnugBrew - your sanctuary for calm and relaxation.</p>
             <a href="/" class="cta-button">Back to Home</a>
         </section>
     `;
 }
 
 function showBlogPage() {
-    const main = document.querySelector('main');
+    const main = document.getElementById('mainContent'); // ✅ FIXED
     if (!main) return;
     
     main.innerHTML = `
         <section style="max-width: 800px; margin: 100px auto; padding: 2rem;">
             <h1>Blog</h1>
-            <p>Coming soon - articles about mindfulness, self-care, and creating perfect evening rituals.</p>
+            <p>Coming soon - articles about mindfulness and self-care.</p>
             <a href="/" class="cta-button">Back to Home</a>
         </section>
     `;
 }
 
 function showContactPage() {
-    const main = document.querySelector('main');
+    const main = document.getElementById('mainContent'); // ✅ FIXED
     if (!main) return;
     
     main.innerHTML = `
         <section style="max-width: 800px; margin: 100px auto; padding: 2rem;">
             <h1>Contact Us</h1>
             <p>Email: hello@snugbrew.com</p>
-            <p>Phone: +91 XXXXX XXXXX</p>
-            <p>We'd love to hear from you!</p>
             <a href="/" class="cta-button">Back to Home</a>
         </section>
     `;
 }
 
 function showProductsPage() {
-    // This will show the products grid (same as homepage products section)
-    const main = document.querySelector('main');
+    const main = document.getElementById('mainContent'); // ✅ FIXED
     if (!main) return;
     
     main.innerHTML = `
@@ -548,7 +491,7 @@ function showProductsPage() {
 }
 
 function showCartPage() {
-    const main = document.querySelector('main');
+    const main = document.getElementById('mainContent'); // ✅ FIXED
     if (!main) return;
     
     main.innerHTML = `
