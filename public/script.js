@@ -103,7 +103,47 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartCount();
     loadProductDetail();
     setupMobileMenu();
+    loadProductsPreview(); // 🆕 ADDED THIS LINE!
 });
+
+// 🆕 NEW FUNCTION: LOAD PRODUCTS PREVIEW WITH WORKING BUTTONS
+function loadProductsPreview() {
+    const previewContainer = document.querySelector('.products-preview');
+    if (!previewContainer) return;
+    
+    previewContainer.innerHTML = `
+        <div class="preview-card">
+            <img src="/assets/images/chamomile-tin.jpg" alt="Chamomile Cozy">
+            <h3>Chamomile Cozy</h3>
+            <p>From ₹199</p>
+            <button class="cta-button" onclick="window.location.href='/product/chamomile'">View Options</button>
+        </div>
+        <div class="preview-card">
+            <img src="/assets/images/lavender-tin.jpg" alt="Lavender Calm">
+            <h3>Lavender Calm</h3>
+            <p>From ₹199</p>
+            <button class="cta-button" onclick="window.location.href='/product/lavender'">View Options</button>
+        </div>
+        <div class="preview-card">
+            <img src="/assets/images/cocoa-dream-tin.jpg" alt="Cocoa Dream">
+            <h3>Cocoa Dream</h3>
+            <p>From ₹199</p>
+            <button class="cta-button" onclick="window.location.href='/product/cocoa'">View Options</button>
+        </div>
+        <div class="preview-card">
+            <img src="/assets/images/jasmine-wisper-tin.jpg" alt="Jasmine Whisper">
+            <h3>Jasmine Whisper</h3>
+            <p>From ₹199</p>
+            <button class="cta-button" onclick="window.location.href='/product/jasmine'">View Options</button>
+        </div>
+        <div class="preview-card">
+            <img src="/assets/images/vanila-honey-tin.jpg" alt="Vanilla Honey">
+            <h3>Vanilla Honey</h3>
+            <p>From ₹199</p>
+            <button class="cta-button" onclick="window.location.href='/product/vanilla'">View Options</button>
+        </div>
+    `;
+}
 
 // WORKING CAROUSEL SYSTEM
 function initCarousel() {
