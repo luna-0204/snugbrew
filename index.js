@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-// 🚀 ALL YOUR ROUTES - COMPLETE SET:
+// ALL ROUTES
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -16,24 +16,24 @@ app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
-app.get('/products', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html')); // Same as home for now
-});
-
 app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html')); // Same as home for now
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.get('/blog', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html')); // Same as home for now
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.get('/contact', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html')); // Same as home for now
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/products', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.get('/cart', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html')); // Same as home for now
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // PRODUCT ROUTES
@@ -55,16 +55,6 @@ app.get('/product/jasmine', (req, res) => {
 
 app.get('/product/vanilla', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'product-detail.html'));
-});
-
-// Catch-all for any other product pages
-app.get('/product/:name', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'product-detail.html'));
-});
-
-// 🎯 CATCH-ALL ROUTE - Serves index.html for any other route
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {
