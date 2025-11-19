@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnugBrew Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-container { max-width: 1200px; margin: 2rem auto; padding: 2rem; }
+        .admin-section { background: white; padding: 2rem; margin: 2rem 0; border-radius: 18px; }
+        .revenue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+        .metric-card { background: var(--cream); padding: 1.5rem; border-radius: 12px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>SnugBrew Admin Panel</h1>
+        <p style="color: red; background: #ffe6e6; padding: 1rem; border-radius: 8px;">
+            ⚠️ DEMO ONLY - No real transactions or data
+        </p>
+
+        <div class="admin-section">
+            <h2>Revenue Dashboard</h2>
+            <div class="revenue-grid">
+                <div class="metric-card">
+                    <h3>Total Revenue</h3>
+                    <div class="value">₹24,950</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Orders</h3>
+                    <div class="value">45</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Avg Order Value</h3>
+                    <div class="value">₹554</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <h2>Pricing Management</h2>
+            <div class="pricing-table">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <th>Product</th>
+                        <th>Current Price</th>
+                        <th>New Price</th>
+                    </tr>
+                    <tr>
+                        <td>Calm Kit</td>
+                        <td>₹499</td>
+                        <td><input type="number" value="499"></td>
+                    </tr>
+                    <tr>
+                        <td>Premium Kit</td>
+                        <td>₹899</td>
+                        <td><input type="number" value="899"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <h2>Revenue Model</h2>
+            <p><strong>COGS per Calm Kit:</strong> ₹200</p>
+            <p><strong>Markup:</strong> 60%</p>
+            <p><strong>Projected Monthly Revenue:</strong> ₹50,000</p>
+        </div>
+
+        <a href="/" style="color: var(--matcha); text-decoration: none;">← Back to Main Site</a>
+    </div>
+</body>
+</html>
