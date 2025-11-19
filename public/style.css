@@ -1,198 +1,58 @@
-/* Add to your existing CSS */
-
-/* Cart Link */
-.cart-link {
-    background: var(--lilac);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    color: white !important;
-}
-
-#cartCount {
-    background: var(--matcha);
-    border-radius: 50%;
-    padding: 0.2rem 0.5rem;
-    font-size: 0.8rem;
-}
-
-/* Spinning Carousel */
-.carousel-container {
-    position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 20px;
-    height: 500px;
-}
-
-.carousel {
-    display: flex;
-    transition: transform 0.5s ease;
-    height: 100%;
-}
-
-.carousel-item {
-    min-width: 100%;
-    position: relative;
-}
-
-.carousel-item img {
+/* IMPROVED HEADER */
+.header {
+    background: var(--card);
+    backdrop-filter: blur(20px);
+    position: fixed;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.carousel-text {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.7));
-    color: white;
-    padding: 2rem;
-    text-align: center;
-}
-
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255,255,255,0.8);
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 10;
-}
-
-.carousel-btn.prev { left: 20px; }
-.carousel-btn.next { right: 20px; }
-
-/* Products Preview */
-.featured-products {
-    padding: 4rem 2rem;
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.products-preview {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--brown);
 }
 
-.preview-card {
-    background: var(--card);
-    border-radius: 18px;
-    padding: 1.5rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.preview-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-
-.preview-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 1rem;
-}
-
-/* Product Detail Pages */
-.product-detail {
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 0 2rem;
-}
-
-.product-gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.product-options {
+.nav-links {
     display: flex;
-    gap: 1rem;
-    margin: 2rem 0;
-}
-
-.option-card {
-    border: 2px solid var(--cream);
-    padding: 1.5rem;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-align: center;
-    flex: 1;
-}
-
-.option-card.selected {
-    border-color: var(--matcha);
-    background: var(--cream);
-}
-
-.option-card h4 {
-    margin-bottom: 0.5rem;
-}
-
-.option-card .price {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--matcha);
-}
-
-.subscription-options {
-    background: var(--cream);
-    padding: 2rem;
-    border-radius: 18px;
-    margin: 2rem 0;
-}
-
-.sub-option {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-/* Cart Page */
-.cart-container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 2rem;
-}
-
-.cart-item {
-    display: flex;
-    gap: 1rem;
-    padding: 1.5rem;
-    border-bottom: 1px solid var(--cream);
+    list-style: none;
+    gap: 2.5rem;
     align-items: center;
 }
 
-.cart-item img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
+.nav-links a {
+    text-decoration: none;
+    color: var(--brown);
+    font-weight: 500;
+    transition: color 0.3s;
+    font-size: 1rem;
 }
 
-.cart-total {
-    text-align: right;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 2rem 0;
+.nav-links a:hover {
     color: var(--matcha);
+}
+
+.cart-link {
+    background: var(--lilac);
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    color: white !important;
+    font-weight: 600;
+}
+
+/* Add space for fixed header */
+body {
+    padding-top: 80px;
 }
