@@ -3,20 +3,17 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve static files
-app.use(express.static('public'));
-app.use('/assets', express.static('assets'));
+// Serve static files from public folder
+app.use(express.static(path.join(__dirname, 'public')));
 
-// API route example
-app.get('/api', (req, res) => {
-    res.json({ message: 'SnugBrew API is working! 🚀' });
-});
+// Serve assets folder
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-// Serve main page
-app.get('/', (req, res) => {
+// All routes should serve index.html for SPA (Single Page Application)
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {
-    console.log(`☕ SnugBrew server running on port ${PORT}`);
+    console.log(`🚀 SnugBrew server running on port ${PORT}`);
 });
