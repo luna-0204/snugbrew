@@ -107,41 +107,64 @@ document.addEventListener('DOMContentLoaded', function() {
     detectPage();
 });
 
-// 🆕 LOAD PRODUCTS PREVIEW FUNCTION
-function loadProductsPreview() {
-    const previewContainer = document.querySelector('.products-preview');
-    if (!previewContainer) return;
+// 🆕 SUPER SIMPLE FIXED VERSION
+function loadProductDetail() {
+    const path = window.location.pathname;
+    console.log('Current URL:', path);
     
-    previewContainer.innerHTML = `
-        <div class="preview-card" onclick="window.location.href='/product/chamomile'">
-            <img src="/assets/images/chamomile-tin.jpg" alt="Chamomile Cozy">
-            <h3>Chamomile Cozy</h3>
-            <p>From ₹199</p>
-            <button class="cta-button">View Options</button>
-        </div>
-        <div class="preview-card" onclick="window.location.href='/product/lavender'">
-            <img src="/assets/images/lavender-tin.jpg" alt="Lavender Calm">
-            <h3>Lavender Calm</h3>
-            <p>From ₹199</p>
-            <button class="cta-button">View Options</button>
-        </div>
-        <div class="preview-card" onclick="window.location.href='/product/cocoa'">
-            <img src="/assets/images/cocoa-dream-tin.jpg" alt="Cocoa Dream">
-            <h3>Cocoa Dream</h3>
-            <p>From ₹199</p>
-            <button class="cta-button">View Options</button>
-        </div>
-        <div class="preview-card" onclick="window.location.href='/product/jasmine'">
-            <img src="/assets/images/jasmine-wisper-tin.jpg" alt="Jasmine Whisper">
-            <h3>Jasmine Whisper</h3>
-            <p>From ₹199</p>
-            <button class="cta-button">View Options</button>
-        </div>
-        <div class="preview-card" onclick="window.location.href='/product/vanilla'">
-            <img src="/assets/images/vanila-honey-tin.jpg" alt="Vanilla Honey">
-            <h3>Vanilla Honey</h3>
-            <p>From ₹199</p>
-            <button class="cta-button">View Options</button>
+    // Get product name from URL
+    let productName = path.split('/product/')[1];
+    if (!productName) {
+        console.log('No product name found');
+        return;
+    }
+    
+    console.log('Looking for product:', productName);
+    
+    const product = products[productName];
+    const container = document.getElementById('productDetail');
+    
+    if (!container || !product) {
+        console.log('Product not found or no container');
+        return;
+    }
+    
+    console.log('FOUND PRODUCT:', product.name);
+    
+    // 🎉 SHOW THE PRODUCT!
+    container.innerHTML = `
+        <div class="product-detail">
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="${product.images[0]}" alt="${product.name}">
+                </div>
+                <div class="thumbnail-gallery">
+                    ${product.images.map((img, index) => `
+                        <img src="${img}" alt="${product.name}" 
+                             onclick="this.closest('.product-gallery').querySelector('.main-image img').src='${img}'"
+                             class="thumbnail">
+                    `).join('')}
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h1>${product.name}</h1>
+                <p>${product.description}</p>
+                
+                <div class="product-options">
+                    ${product.options.map((option, index) => `
+                        <div class="option-card" onclick="this.parentElement.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected')); this.classList.add('selected'); this.closest('.product-info').querySelector('.add-to-cart-btn').textContent = 'Add to Cart - ₹${option.price}';">
+                            <h4>${option.type}</h4>
+                            <div class="price">₹${option.price}</div>
+                            <ul>${option.includes.map(item => `<li>${item}</li>`).join('')}</ul>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <button class="cta-button add-to-cart-btn" onclick="addToCart(${product.id}, {type: '${product.options[0].type}', price: ${product.options[0].price}})">
+                    Add to Cart - ₹${product.options[0].price}
+                </button>
+            </div>
         </div>
     `;
 }
