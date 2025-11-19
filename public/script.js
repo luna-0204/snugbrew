@@ -106,43 +106,98 @@ document.addEventListener('DOMContentLoaded', function() {
     loadProductsPreview(); // 🆕 ADDED THIS LINE!
 });
 
-// 🆕 NEW FUNCTION: LOAD PRODUCTS PREVIEW WITH WORKING BUTTONS
-function loadProductsPreview() {
-    const previewContainer = document.querySelector('.products-preview');
-    if (!previewContainer) return;
+// PRODUCT DETAIL PAGE - FIXED VERSION
+function loadProductDetail() {
+    const path = window.location.pathname;
+    console.log('Current path:', path); // Debug log
     
-    previewContainer.innerHTML = `
-        <div class="preview-card">
-            <img src="/assets/images/chamomile-tin.jpg" alt="Chamomile Cozy">
-            <h3>Chamomile Cozy</h3>
-            <p>From ₹199</p>
-            <button class="cta-button" onclick="window.location.href='/product/chamomile'">View Options</button>
-        </div>
-        <div class="preview-card">
-            <img src="/assets/images/lavender-tin.jpg" alt="Lavender Calm">
-            <h3>Lavender Calm</h3>
-            <p>From ₹199</p>
-            <button class="cta-button" onclick="window.location.href='/product/lavender'">View Options</button>
-        </div>
-        <div class="preview-card">
-            <img src="/assets/images/cocoa-dream-tin.jpg" alt="Cocoa Dream">
-            <h3>Cocoa Dream</h3>
-            <p>From ₹199</p>
-            <button class="cta-button" onclick="window.location.href='/product/cocoa'">View Options</button>
-        </div>
-        <div class="preview-card">
-            <img src="/assets/images/jasmine-wisper-tin.jpg" alt="Jasmine Whisper">
-            <h3>Jasmine Whisper</h3>
-            <p>From ₹199</p>
-            <button class="cta-button" onclick="window.location.href='/product/jasmine'">View Options</button>
-        </div>
-        <div class="preview-card">
-            <img src="/assets/images/vanila-honey-tin.jpg" alt="Vanilla Honey">
-            <h3>Vanilla Honey</h3>
-            <p>From ₹199</p>
-            <button class="cta-button" onclick="window.location.href='/product/vanilla'">View Options</button>
+    if (!path.includes('/product/')) {
+        console.log('Not a product page');
+        return;
+    }
+    
+    // Extract product name from URL
+    const productName = path.split('/product/')[1];
+    console.log('Product name from URL:', productName); // Debug log
+    
+    const product = products[productName];
+    const container = document.getElementById('productDetail');
+    
+    console.log('Product found:', product); // Debug log
+    console.log('Container found:', container); // Debug log
+    
+    if (!container) {
+        console.log('No product detail container found');
+        return;
+    }
+    
+    if (!product) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 4rem 2rem;">
+                <h2>Product Not Found</h2>
+                <p>Sorry, we couldn't find the product "${productName}".</p>
+                <a href="/products" class="cta-button" style="display: inline-block; margin-top: 1rem;">Back to Products</a>
+            </div>
+        `;
+        return;
+    }
+    
+    // SUCCESS! Show the actual product
+    container.innerHTML = `
+        <div class="product-detail">
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="${product.images[0]}" alt="${product.name}" id="mainProductImage">
+                </div>
+                <div class="thumbnail-gallery">
+                    ${product.images.map((img, index) => `
+                        <img src="${img}" alt="${product.name} ${index + 1}" 
+                             onclick="changeMainImage('${img}')"
+                             class="thumbnail ${index === 0 ? 'active' : ''}">
+                    `).join('')}
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h1>${product.name}</h1>
+                <p class="product-description">${product.description}</p>
+                
+                <div class="product-options">
+                    ${product.options.map((option, index) => `
+                        <div class="option-card ${index === 0 ? 'selected' : ''}" 
+                             onclick="selectOption(this, ${product.id}, ${index})">
+                            <h4>${option.type}</h4>
+                            <div class="price">₹${option.price}</div>
+                            <ul>
+                                ${option.includes.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <button class="cta-button add-to-cart-btn" onclick="addToCart(${product.id}, product.options[0])">
+                    Add to Cart - ₹${product.options[0].price}
+                </button>
+                
+                <div class="subscription-options">
+                    <h3>📦 Monthly Subscription</h3>
+                    ${product.subscriptions.map(sub => `
+                        <div class="sub-option">
+                            <div>
+                                <h4>${sub.type} Subscription - ₹${sub.price}/month</h4>
+                                <p>${sub.description}</p>
+                            </div>
+                            <button class="cta-button" onclick="addToCart(${product.id}, {type: '${sub.type} Subscription', price: ${sub.price}}, ${JSON.stringify(sub).replace(/"/g, '&quot;')})">
+                                Subscribe
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
         </div>
     `;
+    
+    console.log('Product detail loaded successfully!');
 }
 
 // WORKING CAROUSEL SYSTEM
