@@ -41,10 +41,16 @@
     <script>
         // 🆕 FORCE LOAD THE PRODUCT DETAIL WHEN PAGE LOADS
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🔄 Product detail page loaded, calling loadProductDetail()');
-            loadProductDetail();
-            updateCartCount();
-            setupMobileMenu();
+            console.log('🚀 Product page loaded - loading product details');
+            if (typeof loadProductDetail === 'function') {
+                loadProductDetail();
+            }
+            if (typeof updateCartCount === 'function') {
+                updateCartCount();
+            }
+            if (typeof setupMobileMenu === 'function') {
+                setupMobileMenu();
+            }
         });
     </script>
 </body>
