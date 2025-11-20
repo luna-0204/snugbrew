@@ -731,3 +731,18 @@ function removeFromCart(itemId) {
     updateCartCount();
     showCartPage(); // Refresh cart page
 }
+// 🆕 TEMPORARY DEBUG - ADD THIS
+function debugPages() {
+    console.log('=== PAGE DEBUG ===');
+    console.log('URL:', window.location.href);
+    console.log('Path:', window.location.pathname);
+    console.log('Main element:', document.getElementById('mainContent'));
+    console.log('DetectPage function:', typeof detectPage);
+    console.log('=== END DEBUG ===');
+}
+
+// Call it in DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    debugPages(); // 🆕 ADD THIS
+    detectPage(); // 🆕 AND THIS
+});
