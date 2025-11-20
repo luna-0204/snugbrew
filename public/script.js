@@ -104,12 +104,6 @@ function loadProductDetail() {
     const path = window.location.pathname;
     console.log('🔄 Checking path:', path);
     
-    // Check if we're on a product page
-    if (!path.includes('/product/')) {
-        console.log('❌ Not a product page');
-        return;
-    }
-    
     // Extract product name correctly
     const productName = path.split('/product/')[1];
     console.log('🔍 Product name:', productName);
