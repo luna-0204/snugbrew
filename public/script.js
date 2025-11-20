@@ -741,8 +741,133 @@ function debugPages() {
     console.log('=== END DEBUG ===');
 }
 
-// Call it in DOMContentLoaded
+// Initialize when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    debugPages(); // 🆕 ADD THIS
-    detectPage(); // 🆕 AND THIS
+    console.log('🚀 SnugBrew Initializing...');
+    
+    initCarousel();
+    updateCartCount();
+    setupMobileMenu();
+    loadProductsPreview();
+    
+    // 🆕 CHECK IF WE'RE ON A PRODUCT PAGE
+    if (window.location.pathname.includes('/product/')) {
+        console.log('📦 Loading product page...');
+        loadProductDetail();
+    } else {
+        // Regular page detection
+        detectPage();
+    }
+});
+// 🆕 PRODUCT PAGE FUNCTIONALITY - CAROUSEL & PACKAGE SELECTION
+function initProductPage() {
+    console.log('🚀 Initializing product page...');
+    
+    // CAROUSEL FUNCTIONALITY
+    const carousels = document.querySelectorAll('.product-carousel');
+    console.log('Found carousels:', carousels.length);
+    
+    carousels.forEach(carousel => {
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        const dots = carousel.querySelectorAll('.carousel-dot');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        
+        console.log('Carousel slides:', slides.length);
+        
+        if (slides.length > 0) {
+            let currentSlide = 0;
+
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                currentSlide = (n + slides.length) % slides.length;
+                slides[currentSlide].classList.add('active');
+                if (dots[currentSlide]) {
+                    dots[currentSlide].classList.add('active');
+                }
+            }
+
+            // Navigation buttons
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    console.log('Previous clicked');
+                    showSlide(currentSlide - 1);
+                });
+            }
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    console.log('Next clicked');
+                    showSlide(currentSlide + 1);
+                });
+            }
+
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    console.log('Dot clicked:', index);
+                    showSlide(index);
+                });
+            });
+        }
+    });
+
+    // PACKAGE SELECTION FUNCTIONALITY
+    const optionCards = document.querySelectorAll('.option-card');
+    console.log('Found option cards:', optionCards.length);
+    
+    optionCards.forEach(card => {
+        card.addEventListener('click', function() {
+            console.log('Option card clicked');
+            
+            // Remove selected class from all cards in this group
+            const allCards = this.parentElement.querySelectorAll('.option-card');
+            allCards.forEach(c => c.classList.remove('selected'));
+            
+            // Add selected class to clicked card
+            this.classList.add('selected');
+            
+            // Update price display
+            const price = this.getAttribute('data-price');
+            const finalPriceElement = document.querySelector('.final-price');
+            if (finalPriceElement) {
+                finalPriceElement.textContent = `₹${price}`;
+                console.log('Price updated to:', price);
+            }
+        });
+    });
+
+    // ADD TO CART FUNCTIONALITY
+    const addToCartBtn = document.querySelector('.add-to-cart-btn');
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', function() {
+            const productName = document.querySelector('.product-info h1').textContent;
+            const selectedOption = document.querySelector('.option-card.selected');
+            const price = selectedOption ? selectedOption.getAttribute('data-price') : '199';
+            
+            alert(`Added ${productName} to cart! 🛒\nPrice: ₹${price}`);
+            console.log('Added to cart:', productName, price);
+        });
+    }
+}
+
+// 🆕 CHECK IF WE'RE ON A PRODUCT PAGE AND INITIALIZE
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('📄 Page loaded, checking if product page...');
+    
+    // Check if we're on a product page (has product-carousel)
+    if (document.querySelector('.product-carousel')) {
+        console.log('🎯 Product page detected!');
+        initProductPage();
+    } else {
+        console.log('ℹ️ Not a product page, skipping product initialization');
+    }
+    
+    // Your existing initialization
+    initCarousel();
+    updateCartCount();
+    setupMobileMenu();
+    loadProductsPreview();
+    detectPage();
 });
