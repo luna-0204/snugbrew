@@ -780,13 +780,36 @@ function loadProductsPreview() {
     const container = document.querySelector('.products-preview');
     if (!container) return;
     
-    container.innerHTML = Object.values(products).map(product => `
-        <div class="product-card">
-            <img src="${product.images[0]}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <p>${product.description}</p>
-            <div class="price">From ₹${Math.min(...product.options.map(opt => opt.price))}</div>
-            <a href="/product/${Object.keys(products).find(key => products[key].id === product.id)}" class="cta-button">View Details</a>
+    container.innerHTML = `
+        <div class="preview-card" onclick="window.location.href='/product/chamomile'">
+            <img src="/assets/images/chamomile-tin.jpg" alt="Chamomile Cozy">
+            <h3>Chamomile Cozy</h3>
+            <p>From ₹199</p>
+            <button class="cta-button">View Options</button>
         </div>
-    `).join('');
+        <div class="preview-card" onclick="window.location.href='/product/lavender'">
+            <img src="/assets/images/lavender-tin.jpg" alt="Lavender Calm">
+            <h3>Lavender Calm</h3>
+            <p>From ₹199</p>
+            <button class="cta-button">View Options</button>
+        </div>
+        <div class="preview-card" onclick="window.location.href='/product/cocoa'">
+            <img src="/assets/images/cocoa-dream-tin.jpg" alt="Cocoa Dream">
+            <h3>Cocoa Dream</h3>
+            <p>From ₹199</p>
+            <button class="cta-button">View Options</button>
+        </div>
+        <div class="preview-card" onclick="window.location.href='/product/jasmine'">
+            <img src="/assets/images/jasmine-wisper-tin.jpg" alt="Jasmine Whisper">
+            <h3>Jasmine Whisper</h3>
+            <p>From ₹199</p>
+            <button class="cta-button">View Options</button>
+        </div>
+        <div class="preview-card" onclick="window.location.href='/product/vanilla'">
+            <img src="/assets/images/vanila-honey-tin.jpg" alt="Vanilla Honey">
+            <h3>Vanilla Honey</h3>
+            <p>From ₹199</p>
+            <button class="cta-button">View Options</button>
+        </div>
+    `;
 }
