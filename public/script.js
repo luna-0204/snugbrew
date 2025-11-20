@@ -519,15 +519,14 @@ function showContactPage() {
                         
                         <div class="contact-item">
                             <h3>📞 Phone</h3>
-                            <p>+91 98765 43210</p>
+                            <p>+91 XXXXX XXXX</p>
                             <p>Mon-Fri: 9AM-6PM IST</p>
                         </div>
                         
                         <div class="contact-item">
                             <h3>📍 Address</h3>
                             <p>SnugBrew Wellness<br>
-                               123 Calm Street<br>
-                               Bangalore, Karnataka 560001<br>
+                               Chennai, Tamil NAdu<br>
                                India</p>
                         </div>
                         
