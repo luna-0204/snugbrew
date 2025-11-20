@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-// ALL ROUTES
+// 🎯 ALL ROUTES - FIXED!
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -16,6 +16,7 @@ app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
+// SPA PAGES - ALL SERVING index.html
 app.get('/about', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -36,25 +37,25 @@ app.get('/cart', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// 🆕 FIXED PRODUCT ROUTES
+// 🆕 FIXED PRODUCT ROUTES - ALL USING product-detail.html
 app.get('/product/chamomile', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'product-chamomile.html'));
+    res.sendFile(path.join(__dirname, 'public', 'product-detail.html'));
 });
 
 app.get('/product/lavender', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'product-lavender.html'));
+    res.sendFile(path.join(__dirname, 'public', 'product-detail.html'));
 });
 
 app.get('/product/cocoa', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'product-cocoa.html'));
+    res.sendFile(path.join(__dirname, 'public', 'product-detail.html'));
 });
 
 app.get('/product/jasmine', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'product-jasmine.html'));
+    res.sendFile(path.join(__dirname, 'public', 'product-detail.html'));
 });
 
 app.get('/product/vanilla', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'product-vanilla.html'));
+    res.sendFile(path.join(__dirname, 'public', 'product-detail.html'));
 });
 
 app.listen(PORT, () => {
