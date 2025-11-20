@@ -97,9 +97,7 @@ let cart = JSON.parse(localStorage.getItem('snugbrewCart')) || [];
 let currentSlide = 0;
 let carouselInterval;
 
-
-
-// 🆕 FIXED PRODUCT DETAIL FUNCTION
+// 🆕 FIXED PRODUCT DETAIL FUNCTION - NO CSP ERRORS!
 function loadProductDetail() {
     const path = window.location.pathname;
     console.log('🔄 Checking path:', path);
@@ -143,7 +141,6 @@ function loadProductDetail() {
                 <div class="thumbnail-gallery">
                     ${product.images.map((img, index) => `
                         <img src="${img}" alt="${product.name} ${index + 1}" 
-                             onclick="changeMainImage('${img}')"
                              class="thumbnail ${index === 0 ? 'active' : ''}">
                     `).join('')}
                 </div>
@@ -156,7 +153,8 @@ function loadProductDetail() {
                 <div class="product-options">
                     ${product.options.map((option, index) => `
                         <div class="option-card ${index === 0 ? 'selected' : ''}" 
-                             onclick="selectOption(this, ${product.id}, ${index})">
+                             data-product-id="${product.id}" 
+                             data-option-index="${index}">
                             <h4>${option.type}</h4>
                             <div class="price">₹${option.price}</div>
                             <ul>
@@ -166,19 +164,22 @@ function loadProductDetail() {
                     `).join('')}
                 </div>
                 
-                <button class="cta-button add-to-cart-btn" onclick="addToCart(${product.id}, product.options[0])">
+                <button class="cta-button add-to-cart-btn" data-product-id="${product.id}" data-option-index="0">
                     Add to Cart - ₹${product.options[0].price}
                 </button>
                 
                 <div class="subscription-options">
                     <h3>📦 Monthly Subscription</h3>
-                    ${product.subscriptions.map(sub => `
+                    ${product.subscriptions.map((sub, index) => `
                         <div class="sub-option">
                             <div>
                                 <h4>${sub.type} Subscription - ₹${sub.price}/month</h4>
                                 <p>${sub.description}</p>
                             </div>
-                            <button class="cta-button" onclick="addToCart(${product.id}, {type: '${sub.type} Subscription', price: ${sub.price}}, ${JSON.stringify(sub).replace(/"/g, '&quot;')})">
+                            <button class="cta-button subscribe-btn" 
+                                    data-product-id="${product.id}" 
+                                    data-sub-type="${sub.type}" 
+                                    data-price="${sub.price}">
                                 Subscribe
                             </button>
                         </div>
@@ -188,8 +189,54 @@ function loadProductDetail() {
         </div>
     `;
     
+    // 🆕 SETUP EVENT LISTENERS AFTER CREATING HTML
+    setupProductPageEvents(product);
     console.log('🎉 Product detail loaded successfully!');
 }
+
+// 🆕 ADD THIS FUNCTION TO HANDLE ALL CLICKS
+function setupProductPageEvents(product) {
+    // Option card selection
+    document.querySelectorAll('.option-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const productId = this.getAttribute('data-product-id');
+            const optionIndex = this.getAttribute('data-option-index');
+            selectOption(this, parseInt(productId), parseInt(optionIndex));
+        });
+    });
+    
+    // Add to cart button
+    const addToCartBtn = document.querySelector('.add-to-cart-btn');
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', function() {
+            const productId = this.getAttribute('data-product-id');
+            const optionIndex = this.getAttribute('data-option-index');
+            addToCart(parseInt(productId), product.options[parseInt(optionIndex)]);
+        });
+    }
+    
+    // Subscribe buttons
+    document.querySelectorAll('.subscribe-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const productId = this.getAttribute('data-product-id');
+            const subType = this.getAttribute('data-sub-type');
+            const price = this.getAttribute('data-price');
+            
+            addToCart(parseInt(productId), {
+                type: subType + ' Subscription',
+                price: parseInt(price)
+            }, { type: subType });
+        });
+    });
+    
+    // Thumbnail clicks
+    document.querySelectorAll('.thumbnail').forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            changeMainImage(this.src);
+        });
+    });
+}
+
 
 // [REST OF YOUR FUNCTIONS - Carousel, Cart, etc. remain the same...]
 // WORKING CAROUSEL SYSTEM
