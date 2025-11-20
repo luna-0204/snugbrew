@@ -97,15 +97,6 @@ let cart = JSON.parse(localStorage.getItem('snugbrewCart')) || [];
 let currentSlide = 0;
 let carouselInterval;
 
-// Initialize when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    initCarousel();
-    updateCartCount();
-    loadProductDetail();
-    setupMobileMenu();
-    loadProductsPreview();
-    detectPage();
-});
 
 
 // 🆕 FIXED PRODUCT DETAIL FUNCTION
@@ -791,3 +782,17 @@ function initProductPage() {
     }
 }
 
+function loadProductsPreview() {
+    const container = document.querySelector('.products-preview');
+    if (!container) return;
+    
+    container.innerHTML = Object.values(products).map(product => `
+        <div class="product-card">
+            <img src="${product.images[0]}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <div class="price">From ₹${Math.min(...product.options.map(opt => opt.price))}</div>
+            <a href="/product/${Object.keys(products).find(key => products[key].id === product.id)}" class="cta-button">View Details</a>
+        </div>
+    `).join('');
+}
