@@ -3,97 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chamomile Cozy - SnugBrew</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Chamomile - SnugBrew</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <a href="/" class="logo">SnugBrew ☕</a>
-            <button class="mobile-menu-btn">☰</button>
+            <a href="/" class="logo">SnugBrew</a>
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="/products">Products</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/blog">Blog</a></li>
                 <li><a href="/contact">Contact</a></li>
-                <li><a href="/cart" class="cart-link">🛒 Cart <span id="cartCount">0</span></a></li>
+                <li><a href="/cart" class="cart-link">Cart 🛒</a></li>
             </ul>
+            <button class="mobile-menu-btn">☰</button>
         </nav>
     </header>
 
-    <main id="mainContent">
-        <div class="product-detail">
-            <div class="product-gallery">
-                <div class="main-image">
-                    <img src="/assets/images/chamomile-tin.jpg" alt="Chamomile Cozy" id="mainProductImage">
+    <!-- Product Detail Section -->
+    <main class="product-detail">
+        <!-- Image Carousel -->
+        <div class="product-gallery">
+            <div class="product-carousel">
+                <div class="carousel-slide active">
+                    <img src="/assets/chamomile-tin.jpg" alt="Chamomile Tin">
                 </div>
-                <div class="thumbnail-gallery">
-                    <img src="/assets/images/chamomile-tin.jpg" alt="Chamomile Tin" onclick="changeMainImage('/assets/images/chamomile-tin.jpg')" class="thumbnail active">
-                    <img src="/assets/images/chamomile-calm-kit.jpg" alt="Calm Kit" onclick="changeMainImage('/assets/images/chamomile-calm-kit.jpg')" class="thumbnail">
-                    <img src="/assets/images/chamomile-premium-kit.jpg" alt="Premium Kit" onclick="changeMainImage('/assets/images/chamomile-premium-kit.jpg')" class="thumbnail">
+                <div class="carousel-slide">
+                    <img src="/assets/chamomile-calm-kit.jpg" alt="Chamomile Calm Kit">
+                </div>
+                <div class="carousel-slide">
+                    <img src="/assets/chamomile-premium-kit.jpg" alt="Chamomile Premium Kit">
+                </div>
+                
+                <button class="carousel-nav carousel-prev">‹</button>
+                <button class="carousel-nav carousel-next">›</button>
+                
+                <div class="carousel-controls">
+                    <span class="carousel-dot active" data-slide="0"></span>
+                    <span class="carousel-dot" data-slide="1"></span>
+                    <span class="carousel-dot" data-slide="2"></span>
                 </div>
             </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info">
+            <h1>Chamomile Collection</h1>
             
-            <div class="product-info">
-                <h1>Chamomile Cozy</h1>
-                <p class="product-description">Soothing chamomile blend with floral honey notes, perfect for winding down after a long day. Our most popular calming ritual.</p>
-                
-                <div class="product-options">
-                    <div class="option-card selected" onclick="selectOption(this, 1, 0)">
-                        <h4>Tin Only</h4>
-                        <div class="price">₹199</div>
-                        <ul>
-                            <li>10-serving tin</li>
-                        </ul>
+            <div class="product-description">
+                Experience the ultimate relaxation with our premium Chamomile blends. Perfect for unwinding after a long day or creating a peaceful morning ritual.
+            </div>
+
+            <!-- Package Selection -->
+            <div class="product-options">
+                <!-- Tin Option -->
+                <div class="option-card selected" data-price="199">
+                    <h4>Chamomile Tin</h4>
+                    <div class="price-container">
+                        <span class="price">₹199</span>
                     </div>
-                    <div class="option-card" onclick="selectOption(this, 1, 1)">
-                        <h4>Calm Kit</h4>
-                        <div class="price">₹499</div>
-                        <ul>
-                            <li>Tin</li>
-                            <li>Mini candle</li>
-                            <li>Skincare minis</li>
-                            <li>Affirmation card</li>
-                        </ul>
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 1, 2)">
-                        <h4>Premium Kit</h4>
-                        <div class="price">₹899</div>
-                        <ul>
-                            <li>All Calm Kit items</li>
-                            <li>Full-size candle</li>
-                            <li>Eye mask</li>
-                            <li>Plushie</li>
-                            <li>Premium box</li>
-                        </ul>
-                    </div>
+                    <ul>
+                        <li>20 tea bags</li>
+                        <li>Premium chamomile flowers</li>
+                        <li>Perfect for daily use</li>
+                    </ul>
                 </div>
-                
-                <button class="cta-button add-to-cart-btn" onclick="addToCart(1, {type: 'Tin Only', price: 199})">
-                    Add to Cart - ₹199
+
+                <!-- Calm Kit Option -->
+                <div class="option-card" data-price="499">
+                    <h4>Chamomile Calm Kit</h4>
+                    <div class="price-container">
+                        <span class="price">₹499</span>
+                    </div>
+                    <ul>
+                        <li>40 tea bags</li>
+                        <li>+1 ceramic mug</li>
+                        <li>+1 honey stick</li>
+                        <li>Perfect gift set</li>
+                    </ul>
+                </div>
+
+                <!-- Premium Kit Option -->
+                <div class="option-card" data-price="899">
+                    <h4>Chamomile Premium Kit</h4>
+                    <div class="price-container">
+                        <span class="price">₹899</span>
+                        <span class="original-price">₹1199</span>
+                        <span class="discount-badge">25% OFF</span>
+                    </div>
+                    <ul>
+                        <li>60 premium tea bags</li>
+                        <li>+2 ceramic mugs</li>
+                        <li>+5 honey sticks</li>
+                        <li>+1 wooden infuser</li>
+                        <li>Free shipping</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Add to Cart Section -->
+            <div class="add-to-cart-section">
+                <div class="selected-price">
+                    Total: <span class="final-price">₹199</span>
+                </div>
+                <button class="add-to-cart-btn">
+                    Add to Cart 🛒
                 </button>
-                
-                <div class="subscription-options">
-                    <h3>📦 Monthly Subscription</h3>
-                    <div class="sub-option">
-                        <div>
-                            <h4>Monthly Subscription - ₹999/month</h4>
-                            <p>1 tin + mini candle + seasonal items + free shipping</p>
-                        </div>
-                        <button class="cta-button" onclick="addToCart(1, {type: 'Monthly Subscription', price: 999})">
-                            Subscribe
-                        </button>
+            </div>
+
+            <!-- Subscription Option -->
+            <div class="subscription-options">
+                <h3>📦 Subscribe & Save</h3>
+                <div class="sub-option">
+                    <div>
+                        <h4>Monthly Delivery</h4>
+                        <p>Get 15% off every month + free shipping</p>
+                    </div>
+                    <div class="sub-price">
+                        <span class="price">Save 15%</span>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="footer">
-        <p>&copy; 2024 SnugBrew. Academic demonstration project.</p>
-    </footer>
+    <!-- Back to Products -->
+    <div class="back-home">
+        <a href="/products" class="cta-button">← Back to All Products</a>
+    </div>
 
     <script src="script.js"></script>
 </body>
