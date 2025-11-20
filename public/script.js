@@ -107,67 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
     detectPage();
 });
 
-// 🆕 SUPER SIMPLE FIXED VERSION
-function loadProductDetail() {
-    const path = window.location.pathname;
-    console.log('Current URL:', path);
-    
-    // Get product name from URL
-    let productName = path.split('/product/')[1];
-    if (!productName) {
-        console.log('No product name found');
-        return;
-    }
-    
-    console.log('Looking for product:', productName);
-    
-    const product = products[productName];
-    const container = document.getElementById('productDetail');
-    
-    if (!container || !product) {
-        console.log('Product not found or no container');
-        return;
-    }
-    
-    console.log('FOUND PRODUCT:', product.name);
-    
-    // 🎉 SHOW THE PRODUCT!
-    container.innerHTML = `
-        <div class="product-detail">
-            <div class="product-gallery">
-                <div class="main-image">
-                    <img src="${product.images[0]}" alt="${product.name}">
-                </div>
-                <div class="thumbnail-gallery">
-                    ${product.images.map((img, index) => `
-                        <img src="${img}" alt="${product.name}" 
-                             onclick="this.closest('.product-gallery').querySelector('.main-image img').src='${img}'"
-                             class="thumbnail">
-                    `).join('')}
-                </div>
-            </div>
-            
-            <div class="product-info">
-                <h1>${product.name}</h1>
-                <p>${product.description}</p>
-                
-                <div class="product-options">
-                    ${product.options.map((option, index) => `
-                        <div class="option-card" onclick="this.parentElement.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected')); this.classList.add('selected'); this.closest('.product-info').querySelector('.add-to-cart-btn').textContent = 'Add to Cart - ₹${option.price}';">
-                            <h4>${option.type}</h4>
-                            <div class="price">₹${option.price}</div>
-                            <ul>${option.includes.map(item => `<li>${item}</li>`).join('')}</ul>
-                        </div>
-                    `).join('')}
-                </div>
-                
-                <button class="cta-button add-to-cart-btn" onclick="addToCart(${product.id}, {type: '${product.options[0].type}', price: ${product.options[0].price}})">
-                    Add to Cart - ₹${product.options[0].price}
-                </button>
-            </div>
-        </div>
-    `;
-}
 
 // 🆕 FIXED PRODUCT DETAIL FUNCTION
 function loadProductDetail() {
@@ -852,22 +791,3 @@ function initProductPage() {
     }
 }
 
-// 🆕 CHECK IF WE'RE ON A PRODUCT PAGE AND INITIALIZE
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('📄 Page loaded, checking if product page...');
-    
-    // Check if we're on a product page (has product-carousel)
-    if (document.querySelector('.product-carousel')) {
-        console.log('🎯 Product page detected!');
-        initProductPage();
-    } else {
-        console.log('ℹ️ Not a product page, skipping product initialization');
-    }
-    
-    // Your existing initialization
-    initCarousel();
-    updateCartCount();
-    setupMobileMenu();
-    loadProductsPreview();
-    detectPage();
-});
