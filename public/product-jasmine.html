@@ -4,96 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jasmine Whisper - SnugBrew</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <nav class="nav">
-            <a href="/" class="logo">SnugBrew ☕</a>
-            <button class="mobile-menu-btn">☰</button>
+            <a href="/" class="logo">SnugBrew</a>
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="/products">Products</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/blog">Blog</a></li>
                 <li><a href="/contact">Contact</a></li>
-                <li><a href="/cart" class="cart-link">🛒 Cart <span id="cartCount">0</span></a></li>
+                <li><a href="/cart" class="cart-link">Cart 🛒</a></li>
             </ul>
+            <button class="mobile-menu-btn">☰</button>
         </nav>
     </header>
 
-    <main id="mainContent">
-        <div class="product-detail">
-            <div class="product-gallery">
-                <div class="main-image">
-                    <img src="/assets/images/jasmine-wisper-tin.jpg" alt="Jasmine Whisper" id="mainProductImage">
+    <main class="product-detail">
+        <div class="product-gallery">
+            <div class="product-carousel">
+                <div class="carousel-slide active">
+                    <img src="/assets/jasmine-wisper-tin.jpg" alt="Jasmine Whisper Tin">
                 </div>
-                <div class="thumbnail-gallery">
-                    <img src="/assets/images/jasmine-wisper-tin.jpg" alt="Jasmine Tin" onclick="changeMainImage('/assets/images/jasmine-wisper-tin.jpg')" class="thumbnail active">
-                    <img src="/assets/images/jasmine-wisper-calm-kit.jpg" alt="Calm Kit" onclick="changeMainImage('/assets/images/jasmine-wisper-calm-kit.jpg')" class="thumbnail">
-                    <img src="/assets/images/jasmine-wisper-premium-kit.jpg" alt="Premium Kit" onclick="changeMainImage('/assets/images/jasmine-wisper-premium-kit.jpg')" class="thumbnail">
+                <div class="carousel-slide">
+                    <img src="/assets/jasmine-wisper-calm-kit.jpg" alt="Jasmine Whisper Calm Kit">
+                </div>
+                <div class="carousel-slide">
+                    <img src="/assets/jasmine-wisper-premium-kit.jpg" alt="Jasmine Whisper Premium Kit">
+                </div>
+                
+                <button class="carousel-nav carousel-prev">‹</button>
+                <button class="carousel-nav carousel-next">›</button>
+                
+                <div class="carousel-controls">
+                    <span class="carousel-dot active" data-slide="0"></span>
+                    <span class="carousel-dot" data-slide="1"></span>
+                    <span class="carousel-dot" data-slide="2"></span>
                 </div>
             </div>
+        </div>
+
+        <div class="product-info">
+            <h1>Jasmine Whisper Collection</h1>
             
-            <div class="product-info">
-                <h1>Jasmine Whisper</h1>
-                <p class="product-description">Delicate jasmine with sweet honey notes for gentle relaxation and serene moments.</p>
-                
-                <div class="product-options">
-                    <div class="option-card selected" onclick="selectOption(this, 4, 0)">
-                        <h4>Tin Only</h4>
-                        <div class="price">₹199</div>
-                        <ul>
-                            <li>10-serving tin</li>
-                        </ul>
+            <div class="product-description">
+                Delicate jasmine with sweet honey notes for gentle relaxation and serene moments. Ideal for meditation, yoga, or quiet afternoon reflection.
+            </div>
+
+            <div class="product-options">
+                <div class="option-card selected" data-price="199">
+                    <h4>Jasmine Whisper Tin</h4>
+                    <div class="price-container">
+                        <span class="price">₹199</span>
                     </div>
-                    <div class="option-card" onclick="selectOption(this, 4, 1)">
-                        <h4>Calm Kit</h4>
-                        <div class="price">₹499</div>
-                        <ul>
-                            <li>Tin</li>
-                            <li>Mini candle</li>
-                            <li>Skincare minis</li>
-                            <li>Affirmation card</li>
-                        </ul>
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 4, 2)">
-                        <h4>Premium Kit</h4>
-                        <div class="price">₹899</div>
-                        <ul>
-                            <li>All Calm Kit items</li>
-                            <li>Full-size candle</li>
-                            <li>Eye mask</li>
-                            <li>Plushie</li>
-                            <li>Premium box</li>
-                        </ul>
-                    </div>
+                    <ul>
+                        <li>20 jasmine tea bags</li>
+                        <li>Delicate jasmine flowers</li>
+                        <li>Serene moments</li>
+                    </ul>
                 </div>
-                
-                <button class="cta-button add-to-cart-btn" onclick="addToCart(4, {type: 'Tin Only', price: 199})">
-                    Add to Cart - ₹199
+
+                <div class="option-card" data-price="499">
+                    <h4>Jasmine Whisper Calm Kit</h4>
+                    <div class="price-container">
+                        <span class="price">₹499</span>
+                    </div>
+                    <ul>
+                        <li>40 tea bags</li>
+                        <li>+1 meditation candle</li>
+                        <li>+1 essential oil</li>
+                        <li>Meditation companion</li>
+                    </ul>
+                </div>
+
+                <div class="option-card" data-price="899">
+                    <h4>Jasmine Whisper Premium Kit</h4>
+                    <div class="price-container">
+                        <span class="price">₹899</span>
+                        <span class="original-price">₹1199</span>
+                        <span class="discount-badge">25% OFF</span>
+                    </div>
+                    <ul>
+                        <li>60 premium tea bags</li>
+                        <li>+2 meditation candles</li>
+                        <li>+1 yoga mat spray</li>
+                        <li>+1 singing bowl</li>
+                        <li>Free shipping</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="add-to-cart-section">
+                <div class="selected-price">
+                    Total: <span class="final-price">₹199</span>
+                </div>
+                <button class="add-to-cart-btn">
+                    Add to Cart 🛒
                 </button>
-                
-                <div class="subscription-options">
-                    <h3>📦 Monthly Subscription</h3>
-                    <div class="sub-option">
-                        <div>
-                            <h4>Monthly Subscription - ₹999/month</h4>
-                            <p>1 tin + mini candle + seasonal items + free shipping</p>
-                        </div>
-                        <button class="cta-button" onclick="addToCart(4, {type: 'Monthly Subscription', price: 999})">
-                            Subscribe
-                        </button>
+            </div>
+
+            <div class="subscription-options">
+                <h3>📦 Subscribe & Save</h3>
+                <div class="sub-option">
+                    <div>
+                        <h4>Monthly Delivery</h4>
+                        <p>Get 15% off every month + free shipping</p>
+                    </div>
+                    <div class="sub-price">
+                        <span class="price">Save 15%</span>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="footer">
-        <p>&copy; 2024 SnugBrew. Academic demonstration project.</p>
-    </footer>
+    <div class="back-home">
+        <a href="/products" class="cta-button">← Back to All Products</a>
+    </div>
 
     <script src="script.js"></script>
 </body>
