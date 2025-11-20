@@ -38,5 +38,14 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // 🆕 FORCE LOAD THE PRODUCT DETAIL WHEN PAGE LOADS
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔄 Product detail page loaded, calling loadProductDetail()');
+            loadProductDetail();
+            updateCartCount();
+            setupMobileMenu();
+        });
+    </script>
 </body>
 </html>
